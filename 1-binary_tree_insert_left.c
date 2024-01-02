@@ -16,18 +16,18 @@
 
 binary_tree_t *binary_tree_insert_left(binary_tree_t *parent, int value)
 {
-    binary_tree_t *node = calloc(sizeof(binary_tree_t), 1);
+	binary_tree_t *node = calloc(sizeof(binary_tree_t), 1);
 
-    if (node != NULL && parent != NULL)
-    {
-        node->parent = parent;
-        node->n = value;
-        if (parent->left != NULL)
-        {
-            node->left = parent->left;
-            parent->left->parent = node;
-        }
-        parent->left = node;
-    }
-    return (node);
+	if (node != NULL && parent != NULL)
+	{
+		node->parent = parent;
+		node->n = value;
+		if (parent->left != NULL)
+		{
+			node->left = parent->left;
+			parent->left->parent = node;
+		}
+		parent->left = node;
+	}
+	return (node);
 }
