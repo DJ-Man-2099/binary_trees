@@ -129,16 +129,16 @@ int b_is_full(const binary_tree_t *tree)
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int is_prefect = 0;
+	int is_perfect = 0;
 
 	if (tree != NULL)
 	{
 		if (b_is_full(tree) == 1 &&
 			b_balance(tree) == 0)
 		{
-			is_prefect = 1;
+			is_perfect = 1;
 		}
 	}
 
-	return (is_prefect);
+	return (is_perfect);
 }
