@@ -133,9 +133,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 
 	if (tree != NULL)
 	{
-		if (tree->left != NULL &&
-			tree->right != NULL &&
-			b_is_full(tree) == 1 &&
+		if (b_is_full(tree) == 1 &&
 			b_balance(tree) == 0)
 		{
 			is_prefect = 1;
