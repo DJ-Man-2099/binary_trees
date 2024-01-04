@@ -13,9 +13,11 @@ int check_bst(const binary_tree_t *root, int *prev);
 
 int binary_tree_is_bst(const binary_tree_t *tree)
 {
+	int prev;
+
 	if (tree == NULL)
 		return (0);
-	int prev = -99;
+	prev = -99;
 
 	return (check_bst(tree, &prev));
 }
