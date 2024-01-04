@@ -1,6 +1,30 @@
 #include "binary_trees.h"
 
 /**
+ * b_is_leaf - binary tree function
+ *
+ * checks if a node is a leaf
+ *
+ * @node: a pointer to the node to check
+ *
+ * Return:  1 if node is a leaf, otherwise 0
+ * If node is NULL, return 0
+ */
+
+int b_is_leaf(const binary_tree_t *node)
+{
+	int is_leaf = 0;
+
+	if (node != NULL &&
+		node->left == NULL &&
+		node->right == NULL)
+
+		is_leaf = 1;
+
+	return (is_leaf);
+}
+
+/**
  * b_height - binary tree function
  *
  * measures the height of a binary tree
@@ -58,65 +82,6 @@ int b_balance(const binary_tree_t *tree)
 }
 
 /**
- * node_is_balanced - binary tree function
- *
- * checks if a binary tree is full
- *
- * @tree: a pointer to the root node of the tree to check
- *
- * Return: 1 if full
- * or 0 If tree is NULL
- */
-
-int node_is_balanced(const binary_tree_t *tree)
-{
-	int is_full = 0;
-
-	if (tree != NULL)
-	{
-		if ((tree->left == NULL && tree->right == NULL) ||
-			(tree->left != NULL && tree->right != NULL))
-		{
-			is_full = 1;
-		}
-	}
-
-	return (is_full);
-}
-
-/**
- * b_is_full - binary tree function
- *
- * checks if a binary tree is full
- *
- * @tree: a pointer to the root node of the tree to check
- *
- * Return: 1 if full
- * or 0 If tree is NULL
- */
-
-int b_is_full(const binary_tree_t *tree)
-{
-	int is_full = 0;
-
-	if (tree != NULL)
-	{
-		is_full = 1;
-		is_full = b_is_full(tree->left);
-		if (is_full != 0 || tree->left == NULL)
-		{
-			is_full = 1;
-			is_full = b_is_full(tree->right);
-			if (is_full != 0 || tree->right == NULL)
-			{
-				is_full = node_is_balanced(tree);
-			}
-		}
-	}
-
-	return (is_full);
-}
-/**
  * binary_tree_is_perfect - binary tree function
  *
  * checks if a binary tree is prefect
@@ -129,11 +94,18 @@ int b_is_full(const binary_tree_t *tree)
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int is_perfect = 0;
+	int is_perfect = 0, is_perfect_left = 1,
+		is_perfect_right = 1;
 
 	if (tree != NULL)
 	{
-		if (b_is_full(tree) == 1 &&
+		if (tree->left != NULL)
+			is_perfect_left = binary_tree_is_perfect(tree->left);
+		if (tree->right != NULL)
+			is_perfect_right = binary_tree_is_perfect(tree->right);
+		if (is_perfect_left != 0 && is_perfect_right != 0 &&
+			((tree->left != NULL && tree->right != NULL && b_is_leaf(tree) != 1) ||
+			 (tree->left == NULL && tree->right == NULL && b_is_leaf(tree) == 1)) &&
 			b_balance(tree) == 0)
 		{
 			is_perfect = 1;
