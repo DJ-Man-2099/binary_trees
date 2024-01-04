@@ -1,5 +1,4 @@
 #include "binary_trees.h"
-#include <limits.h>
 
 int check_bst(const binary_tree_t *root, int *prev);
 
@@ -16,7 +15,7 @@ int binary_tree_is_bst(const binary_tree_t *tree)
 {
 	if (tree == NULL)
 		return (0);
-	int prev = INT_MIN;
+	int prev = -99;
 
 	return (check_bst(tree, &prev));
 }
