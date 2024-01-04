@@ -21,8 +21,7 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 		return;
 	height = binary_tree_height(tree);
 	root = (binary_tree_t *)tree;
-	func(root->n);
-	for (i = 0; i < height; i++)
+	for (i = 1; i <= height + 1; i++)
 	{
 		run_func(func, root, i);
 	}
@@ -31,6 +30,8 @@ void binary_tree_levelorder(const binary_tree_t *tree, void (*func)(int))
 
 void run_func(void (*func)(int), binary_tree_t *root, int cur)
 {
+	if (root == NULL)
+		return;
 	if (cur == 1)
 		func(root->n);
 	else if (cur > 1)
