@@ -15,6 +15,8 @@ bst_t *array_to_bst(int *array, size_t size)
 {
 	bst_t *tree;
 
+	if (array == NULL)
+		return (NULL);
 	while (size)
 	{
 		bst_insert(&tree, *array);
