@@ -8,7 +8,6 @@
  * @tree: a pointer to the root node of the tree
  *
  * @value: the needed value to add
- *
 */
 
 bst_t *bst_insert(bst_t **tree, int value)
@@ -36,6 +35,6 @@ bst_t *bst_insert(bst_t **tree, int value)
 	if (value < needed->n)
 		needed->left = new_node;
 	else
-		needed->right = new_node;;
+		needed->right = new_node;
 	return (new_node);
 }
